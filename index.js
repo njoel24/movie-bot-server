@@ -50,17 +50,14 @@ const movieGenres = [
 
 app.use(bodyParser.json());
 
-// Recast will send a post request to /errors to notify important errors
-// described in a json body
+
 app.post('/errors', (req, res) => {
    console.error(req.json);
    res.sendStatus(200); 
 });
 
 app.post('/discover-movies', (req, res) => {
-
     const params = req.body;
-    console.log(params);
     const genre = getGenreId(params.genre);
     const director = params.director;
     const actor = params.actor;
