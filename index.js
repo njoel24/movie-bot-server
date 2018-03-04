@@ -58,15 +58,15 @@ app.post('/errors', (req, res) => {
 });
 
 app.post('/discover-movies', (req, res) => {
+
     const params = req.body;
+    console.log(params);
     const genre = getGenreId(params.genre);
     const director = params.director;
     const actor = params.actor;
     const nationality = params.nationality;
     return discoverMovie(genre, director, actor, nationality)
-      .then((carouselle) => res.json({
-        replies: carouselle,
-      }))
+      .then((carouselle) => res.json(carouselle))
       .catch((err) => console.error('movieApi::discoverMovie error: ', err));
   }); 
 

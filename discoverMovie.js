@@ -27,21 +27,9 @@ function discoverMovie(genre, director, actor, nationality) {
     const cards = results.data.results.map(movie => ({
       title: movie.title || movie.name,
       subtitle: movie.overview,
-      imageUrl: `https://image.tmdb.org/t/p/w640${movie.poster_path}`,
-      buttons: [
-        {
-          type: 'web_url',
-          value: `https://www.themoviedb.org/movie/${movie.id}`,
-          title: 'View More',
-        },
-      ],
-    }));
+      imageUrl: `https://image.tmdb.org/t/p/w640${movie.poster_path}`}));
     return [
-      {
-        type: 'text',
-        content: "Here's what I found for you!",
-      },
-      { type: 'carousel', content: cards },
+      { type: 'carousel', content: cards.splice(0,10) },
     ];
   });
 }
